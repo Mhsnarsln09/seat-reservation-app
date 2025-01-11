@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import '../styles/Seat.css';
 
 interface Seat {
@@ -34,11 +35,11 @@ const Seats: React.FC<SeatsProps> = ({ selectedSeats, setSelectedSeats }) => {
 
   const handleSeatClick = (seat: Seat) => {
     if (seat.status === 'occupied') {
-      alert('Bu koltuk dolu!');
+      toast.error('Bu koltuk dolu!');
       return;
     }
     if (selectedSeats.length >= 3 && !selectedSeats.includes(seat.id)) {
-      alert('En fazla 3 koltuk seçebilirsiniz!');
+      toast.error('En fazla 3 koltuk seçebilirsiniz!');
       return;
     }
     setSelectedSeats((prev) =>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Modal from '@/components/Modal';
+import { toast } from 'react-toastify';
 
 interface TimerProps {
   resetSeats: () => void;
@@ -65,6 +66,7 @@ const Timer: React.FC<TimerProps> = ({ resetSeats }) => {
     setIsModalOpen(false);
     setTimeLeft(30);
     setModalTimer(5);
+    toast.success('İşleme devam ediliyor!');
   };
 
   return (
