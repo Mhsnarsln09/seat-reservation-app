@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Seat Reservation System
 
-## Getting Started
+This project is a seat reservation system implemented using **Next.js**, **TypeScript (TSX)**, and **TailwindCSS**. Below is a detailed overview of the application's functionality and instructions on how to set it up.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Non-Selectable Seats**:
+   - The first 10 seats are marked as unavailable and cannot be selected.
+2. **Dynamic Tooltips for Occupied Seats**:
+   - When hovering over an occupied seat, a tooltip displays the occupant's name.
+   - User data is fetched from an external API: [https://jsonplaceholder.typicode.com/users](https://jsonplaceholder.typicode.com/users).
+3. **Maximum Seat Selection Limit**: Users can select a maximum of 3 seats per reservation.
+4. **Real-Time Price Calculation**:
+   - Each seat costs **1,000 TL**.
+   - The total cost is displayed and updated dynamically.
+5. **Validation for Occupied Seats**:
+   - Attempting to select an occupied seat triggers a warning message.
+6. **Persistent Selection**:
+   - Selected seats are saved and remain consistent after a page refresh.
+7. **Session Timeout Warning**:
+   - After selecting a seat, a 30-second inactivity timer starts.
+   - If no action is taken, the user is prompted to continue.
+   - If no response is received, the page refreshes and clears all selections.
+8. **Form Validation**:
+   - Input fields are required and validated to ensure no empty submissions.
+9. **Reservation Confirmation**:
+   - Clicking the "Complete Reservation" button triggers a success message confirming the reservation.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technologies Used
 
-## Learn More
+- **Next.js**: For server-side rendering and React-based UI development.
+- **TypeScript**: Ensures type safety throughout the project.
+- **TailwindCSS**: Simplifies styling and ensures responsiveness.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
