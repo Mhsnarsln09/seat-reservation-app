@@ -1,0 +1,11 @@
+.seats-container {
+  position: relative;
+  width: 800px;
+  height: 740px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../assets/airplane-shape.png");
+  padding-top: 90px;
+  padding-left: 10px;
+
+}

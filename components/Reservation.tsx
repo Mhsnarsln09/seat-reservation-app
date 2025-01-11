@@ -73,23 +73,21 @@ const Reservation = () => {
     const allFormsValid = selectedSeats.every((_, index) => formValidations[index]);
 
     const handleSubmit = () => {
-        if (!allFormsValid || selectedSeats.length === 0) {
-            alert('Lütfen tüm form alanlarını doldurun ve koltuk seçin.');
-            return;
-        }
         alert('Rezervasyon tamamlandı!');
+        sessionStorage.clear();
+        window.location.reload();
     };
 
     return (
-        <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-10 p-6">
-            <div className="w-full md:w-2/3">
+        <div className="flex flex-col md:flex-row space-y-6  p-6">
+            <div className="w-full md:w-1/2">
                 <h1 className="text-2xl font-bold mb-4">Koltuk Seçimi</h1>
                 <Seats selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats} />
             </div>
 
-            <div className="w-full md:w-1/3 space-y-6">
+            <div className="w-full md:w-1/2 space-y-6">
                 {timerActive && <Timer resetSeats={handleSeatReset} />}
-                <div className="space-y-4">
+                <div className="space-y-4 w-[333px] xl:w-[500px]">
                     {selectedSeats.map((seat, index) => (
                         <PassengerForm
                             key={seat}
@@ -104,16 +102,17 @@ const Reservation = () => {
                         />
                     ))}
                 </div>
-
-                <PriceSummary selectedSeats={selectedSeats} />
                 <button
-                    className={`bg-blue-500 text-white py-2 px-4 rounded w-full ${!allFormsValid || selectedSeats.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                    className={`bg-blue-500 text-white py-2 px-4 rounded w-[333px] xl:w-[500px] ${!allFormsValid || selectedSeats.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
                         }`}
                     onClick={handleSubmit}
                     disabled={!allFormsValid || selectedSeats.length === 0}
                 >
                     İşlemleri Tamamla
                 </button>
+                <div className="w-[333px] xl:w-[500px]">
+                    <PriceSummary selectedSeats={selectedSeats} />
+                </div>
             </div>
         </div>
     );

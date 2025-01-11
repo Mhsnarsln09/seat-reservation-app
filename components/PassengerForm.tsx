@@ -128,14 +128,14 @@ const PassengerForm: React.FC<PassengerFormProps> = ({
   return (
     <div className="border border-gray-300 rounded bg-white mb-4">
       <div
-        className="bg-gray-200 px-4 py-2 cursor-pointer flex justify-between items-center"
+        className="bg-bgColor px-4 py-2 cursor-pointer flex justify-between items-center"
         onClick={() => onToggle(index)}
       >
         <h3 className="text-lg font-semibold">Yolcu {passengerNumber}</h3>
         <span>{isActive ? '-' : '+'}</span>
       </div>
       {isActive && (
-        <div className="p-4 space-y-4">
+        <div className="p-4 grid grid-cols-1 xl:grid-cols-2 gap-4">
           {['name', 'surname', 'phone', 'email', 'birthDate'].map((field) => (
             <div key={field}>
               <label htmlFor={field} className="block text-sm font-medium text-gray-700">

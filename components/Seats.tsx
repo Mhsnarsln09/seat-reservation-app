@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/Seat.css';
 
 interface Seat {
   id: number;
@@ -45,15 +46,15 @@ const Seats: React.FC<SeatsProps> = ({ selectedSeats, setSelectedSeats }) => {
     );
   };
 
-  const renderSeatRow = (rowSeats: Seat[]) => {
+  const renderSeatRow = (rowSeats: Seat[], rowIndex:number) => {
     return (
-      <div className="flex justify-center space-x-[8rem] mb-4">
+      <div className="flex justify-center space-x-[1.25rem]" key={rowIndex}>
         {/* Sol Grup */}
         <div className="grid grid-cols-2 gap-2">
           {rowSeats.slice(0, 2).map((seat) => (
             <div
               key={seat.id}
-              className={`relative w-10 h-10 flex items-center justify-center text-sm ${
+              className={`relative w-3 h-5 rounded-lg flex items-center justify-center text-sm ${
                 seat.status === 'occupied'
                   ? 'bg-gray-400 cursor-not-allowed'
                   : selectedSeats.includes(seat.id)
@@ -64,7 +65,6 @@ const Seats: React.FC<SeatsProps> = ({ selectedSeats, setSelectedSeats }) => {
               onMouseEnter={() => seat.status === 'occupied' && setHoveredSeat(seat.id)}
               onMouseLeave={() => setHoveredSeat(null)}
             >
-              {seat.id}
               {hoveredSeat === seat.id && seat.status === 'occupied' && seat.name && seat.surname && (
                 <div
                   className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded shadow"
@@ -81,7 +81,7 @@ const Seats: React.FC<SeatsProps> = ({ selectedSeats, setSelectedSeats }) => {
           {rowSeats.slice(2, 4).map((seat) => (
             <div
               key={seat.id}
-              className={`relative w-10 h-10 flex items-center justify-center text-sm ${
+              className={`relative w-3 h-5 rounded-lg flex items-center justify-center text-sm ${
                 seat.status === 'occupied'
                   ? 'bg-gray-400 cursor-not-allowed'
                   : selectedSeats.includes(seat.id)
@@ -92,7 +92,6 @@ const Seats: React.FC<SeatsProps> = ({ selectedSeats, setSelectedSeats }) => {
               onMouseEnter={() => seat.status === 'occupied' && setHoveredSeat(seat.id)}
               onMouseLeave={() => setHoveredSeat(null)}
             >
-              {seat.id}
               {hoveredSeat === seat.id && seat.status === 'occupied' && seat.name && seat.surname && (
                 <div
                   className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded shadow"
@@ -109,9 +108,9 @@ const Seats: React.FC<SeatsProps> = ({ selectedSeats, setSelectedSeats }) => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-1 seats-container">
       {Array.from({ length: 19 }, (_, rowIndex) =>
-        renderSeatRow(seats.slice(rowIndex * 4, rowIndex * 4 + 4))
+        renderSeatRow(seats.slice(rowIndex * 4, rowIndex * 4 + 4), rowIndex)
       )}
     </div>
   );

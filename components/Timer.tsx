@@ -6,7 +6,7 @@ interface TimerProps {
 }
 
 const Timer: React.FC<TimerProps> = ({ resetSeats }) => {
-  const [timeLeft, setTimeLeft] = useState(3);
+  const [timeLeft, setTimeLeft] = useState(30);
   const [isMouseMoving, setIsMouseMoving] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTimer, setModalTimer] = useState(3);
@@ -15,7 +15,7 @@ const Timer: React.FC<TimerProps> = ({ resetSeats }) => {
   useEffect(() => {
     const handleMouseMove = () => {
       setIsMouseMoving(true);
-      if (!isModalOpen) setTimeLeft(3);
+      if (!isModalOpen) setTimeLeft(30);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -25,7 +25,7 @@ const Timer: React.FC<TimerProps> = ({ resetSeats }) => {
 
   useEffect(() => {
     if (timeLeft <= 0 && !isModalOpen) {
-      setIsModalOpen(true); // Modalı aç
+      setIsModalOpen(true);
       return;
     }
 
@@ -37,6 +37,12 @@ const Timer: React.FC<TimerProps> = ({ resetSeats }) => {
       return () => clearTimeout(timeout);
     }
   }, [timeLeft, isMouseMoving, isModalOpen]);
+
+  useEffect(() => {
+    if (isMouseMoving) {
+      setIsMouseMoving(false);
+    }
+  }, [isMouseMoving]);
 
 
   useEffect(() => {
@@ -57,13 +63,12 @@ const Timer: React.FC<TimerProps> = ({ resetSeats }) => {
 
   const handleConfirm = () => {
     setIsModalOpen(false);
-    setTimeLeft(3);
-    setModalTimer(3);
+    setTimeLeft(30);
+    setModalTimer(5);
   };
 
   return (
     <>
-    <div>kalan süre:{timeLeft}</div>
       {isModalOpen && (
         <Modal
           message="İşleme devam etmek istiyor musunuz?"
