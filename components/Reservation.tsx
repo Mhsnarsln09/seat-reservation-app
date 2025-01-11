@@ -88,7 +88,7 @@ const Reservation = () => {
             <div className="w-full md:w-1/2 space-y-6">
                 {timerActive && <Timer resetSeats={handleSeatReset} />}
                 <div className="space-y-4 w-[333px] xl:w-[500px]">
-                    {selectedSeats.map((seat, index) => (
+                    {selectedSeats.length ? selectedSeats.map((seat, index) => (
                         <PassengerForm
                             key={seat}
                             seatNumber={seat}
@@ -100,7 +100,14 @@ const Reservation = () => {
                             initialData={formsData[seat] || {}}
                             onChange={handleFormDataChange}
                         />
-                    ))}
+                    )) : (
+                        <div
+                        className="bg-bgColor px-4 py-2 cursor-pointer flex justify-between items-center"
+                    >
+                        <h3 className="text-lg font-semibold">Yolcu 1</h3>
+                        <span>+</span>
+                    </div>
+                    )}
                 </div>
                 <button
                     className={`bg-blue-500 text-white py-2 px-4 rounded w-[333px] xl:w-[500px] ${!allFormsValid || selectedSeats.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
